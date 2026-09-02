@@ -1,24 +1,74 @@
-INSERT INTO clientes (idcliente, nome, email, cpf, telefone) VALUES
-(3, 'Ana Silva', 'ana@gmail.com', 111222333, '11988887777'),
-(4, 'Carlos Souza', 'carlos@hotmail.com', 444555666, NULL);
+-- CRIANDO A TABELA CLIENTES
+CREATE TABLE clientes (
+    id INT PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    cpf VARCHAR(14),
+    telefone VARCHAR(20)
+);
 
-INSERT INTO pedidos (idpedidos, idcliente, data_pedido, valor_total) VALUES
-(3, 3, '2026-09-02', 120.00);
+-- CRIANDO A TABELA PEDIDOS
+CREATE TABLE pedidos (
+    id INT PRIMARY KEY,
+    produto VARCHAR(100),
+    valor DECIMAL(10,2),
+    idclientes INT,
 
+    FOREIGN KEY (idclientes) REFERENCES clientes(id)
+);
+
+
+-- 1. INSERINDO VÁRIOS CLIENTES DE UMA VEZ
+INSERT INTO clientes (id, nome, email, cpf, telefone) VALUES
+(1, 'Joao Silva', 'joao@gmail.com', '111.111.111-11', '71999999999'),
+(2, 'Maria Santos', 'maria@gmail.com', '222.222.222-22', NULL),
+(3, 'Pedro Souza', 'pedro@gmail.com', '333.333.333-33', '71988888888'),
+(4, 'Ana Lima', 'ana@hotmail.com', '444.444.444-44', NULL);
+
+
+-- 2. INSERINDO UM PEDIDO
+-- O idclientes 1 indica que o pedido pertence ao cliente de id 1
+INSERT INTO pedidos (id, produto, valor, idclientes)
+VALUES (1, 'Teclado', 100.00, 1);
+
+
+-- 3. ATUALIZANDO O NOME E O E-MAIL DO CLIENTE COM ID 3
 UPDATE clientes
-SET nome = 'Ana Clara Silva', email = 'anaclara@gmail.com'
-WHERE idcliente = 3;
+SET nome = 'Pedro Oliveira',
+    email = 'pedrooliveira@gmail.com'
+WHERE id = 3;
 
+
+-- 4. ATUALIZANDO CLIENTES QUE POSSUEM E-MAIL DO GMAIL
 UPDATE clientes
-SET telefone = '11900000000'
-WHERE email LIKE '%@gmail.com';
+SET email = 'cliente@gmail.com'
+WHERE email LIKE '%gmail%';
 
+
+-- 5. EXCLUINDO CLIENTES QUE NÃO POSSUEM TELEFONE
 DELETE FROM clientes
 WHERE telefone IS NULL;
 
+
+-- 6. EXCLUINDO OS PEDIDOS DO CLIENTE COM ID 1
 DELETE FROM pedidos
-WHERE idcliente = 1;
+WHERE idclientes = 1;
 
--- DELETE FROM pedidos;
+
+-- 7. COMANDO PARA APAGAR TODOS OS REGISTROS
 -- DELETE FROM clientes;
+-- DELETE FROM pedidos;
 
+
+-- MOSTRAR AS TABELAS
+SELECT * FROM clientes;
+SELECT * FROM pedidos;
+
+
+-- EXCLUIR OS PEDIDOS DO CLIENTE 1
+DELETE FROM pedidos
+WHERE idclientes = 1;
+
+-- EXCLUIR CLIENTES SEM TELEFONE
+DELETE FROM clientes
+WHERE telefone IS NULL;
