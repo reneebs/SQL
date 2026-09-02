@@ -11,7 +11,6 @@ CREATE TABLE pedidos (
     produto VARCHAR(100),
     valor DECIMAL(10,2),
     idclientes INT,
-
     FOREIGN KEY (idclientes) REFERENCES clientes(id)
 );
 
@@ -31,22 +30,17 @@ WHERE id = 3;
 
 UPDATE clientes
 SET email = 'cliente@gmail.com'
-WHERE email LIKE '%gmail%';
-
-DELETE FROM clientes
-WHERE telefone IS NULL;
+WHERE email LIKE '%@gmail.com%';
 
 DELETE FROM pedidos
 WHERE idclientes = 1;
 
--- DELETE FROM clientes;
+DELETE FROM clientes
+WHERE telefone IS NULL;
+
 -- DELETE FROM pedidos;
+-- DELETE FROM clientes;
 
 SELECT * FROM clientes;
 SELECT * FROM pedidos;
-
-DELETE FROM pedidos
-WHERE idclientes = 1;
-
-DELETE FROM clientes
-WHERE telefone IS NULL;
+;
