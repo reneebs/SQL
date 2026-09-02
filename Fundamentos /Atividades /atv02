@@ -1,25 +1,27 @@
 DROP DATABASE IF EXISTS clientes;
-
 CREATE DATABASE clientes;
-
 USE clientes;
 
+-- Criação da tabela clientes
 CREATE TABLE clientes (
     idcliente INT PRIMARY KEY,
     nome VARCHAR(100),
     email VARCHAR(100),
-    cpf INT
+    cpf BIGINT
 );
 
-INSERT INTO clientes VALUES
-(1, 'rené', 'rene@gmail.com', 123456789),
-(2, 'jesus', 'jesus@gmail.com', 987654321);
-
+-- Alteração para adicionar a coluna telefone
 ALTER TABLE clientes
 ADD telefone VARCHAR(20);
 
+-- Inserção de dados em clientes (com o campo telefone incluído)
+INSERT INTO clientes VALUES
+(1, 'rené', 'rene@gmail.com', 12345678901, '11999998888'),
+(2, 'jesus', 'jesus@gmail.com', 98765432100, '11977776666');
+
 SELECT * FROM clientes;
 
+-- Criação da tabela pedidos
 CREATE TABLE pedidos (
     idpedidos INT PRIMARY KEY,
     idcliente INT,
@@ -28,6 +30,7 @@ CREATE TABLE pedidos (
     FOREIGN KEY (idcliente) REFERENCES clientes(idcliente)
 );
 
+-- Inserção de dados em pedidos
 INSERT INTO pedidos VALUES
 (1, 1, '2026-09-02', 50.00),
 (2, 2, '2026-09-02', 80.50);
