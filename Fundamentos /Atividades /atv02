@@ -1,0 +1,31 @@
+CREATE TABLE clientes (
+    idcliente INT PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    cpf INT
+);
+
+INSERT INTO clientes VALUES
+(1, 'Joao', 'joao@gmail.com', 123456789),
+(2, 'Lucas', 'lucas@gmail.com', 987654321);
+
+ALTER TABLE clientes ADD telefone VARCHAR(20);
+
+SELECT * FROM clientes;
+
+
+CREATE TABLE pedidos (
+    idpedidos INT PRIMARY KEY,
+    idcliente INT,
+    data_pedido DATE,
+    valor_total DECIMAL(10,2),
+    FOREIGN KEY (idcliente) REFERENCES clientes(idcliente)
+);
+
+INSERT INTO pedidos VALUES
+(1, 1, '2026-09-02', 50.00),
+(2, 2, '2026-09-02', 80.50);
+
+SELECT * FROM pedidos;
+
+-- DROP TABLE pedidos;
