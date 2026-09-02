@@ -1,0 +1,23 @@
+DROP DATABASE IF EXISTS clientes;
+
+CREATE DATABASE clientes;
+
+USE clientes;
+
+CREATE TABLE clientes (
+    idclientes INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    cpf VARCHAR(11)
+);
+
+CREATE TABLE pedidos (
+    idpedido INT PRIMARY KEY AUTO_INCREMENT,
+    idclientes INT,
+    data_pedido DATE,
+    valor_total DECIMAL(10,2),
+    FOREIGN KEY (idclientes) REFERENCES clientes(idclientes)
+);
+
+ALTER TABLE clientes
+ADD telefone VARCHAR(20);
