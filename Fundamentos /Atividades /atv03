@@ -1,0 +1,24 @@
+INSERT INTO clientes (idcliente, nome, email, cpf, telefone) VALUES
+(3, 'Ana Silva', 'ana@gmail.com', 111222333, '11988887777'),
+(4, 'Carlos Souza', 'carlos@hotmail.com', 444555666, NULL);
+
+INSERT INTO pedidos (idpedidos, idcliente, data_pedido, valor_total) VALUES
+(3, 3, '2026-09-02', 120.00);
+
+UPDATE clientes
+SET nome = 'Ana Clara Silva', email = 'anaclara@gmail.com'
+WHERE idcliente = 3;
+
+UPDATE clientes
+SET telefone = '11900000000'
+WHERE email LIKE '%@gmail.com';
+
+DELETE FROM clientes
+WHERE telefone IS NULL;
+
+DELETE FROM pedidos
+WHERE idcliente = 1;
+
+-- DELETE FROM pedidos;
+-- DELETE FROM clientes;
+
