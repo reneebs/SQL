@@ -15,16 +15,16 @@ CREATE TABLE pedidos (
 );
 
 INSERT INTO clientes (id, nome, email, cpf, telefone) VALUES
-(1, 'Joao Silva', 'joao@gmail.com', '111.111.111-11', '71999999999'),
-(2, 'Maria Santos', 'maria@gmail.com', '222.222.222-22', NULL),
-(3, 'Pedro Souza', 'pedro@gmail.com', '333.333.333-33', '71988888888'),
-(4, 'Ana Lima', 'ana@hotmail.com', '444.444.444-44', NULL);
+(1, 'Jesus Cristo', 'jesus@gmail.com', '111.222.333-45', '71999999999'),
+(2, 'René Borges', 'rene@gmail.com', '222.333.444-56', NULL),
+(3, 'Pedro Judas', 'pedro@gmail.com', '333.444.555-67', '71988888888'),
+(4, 'Ana Lima', 'ana@hotmail.com', '444.555.666-78', NULL);
 
 INSERT INTO pedidos (id, produto, valor, idclientes)
 VALUES (1, 'Teclado', 100.00, 1);
 
 UPDATE clientes
-SET nome = 'Pedro Oliveira',
+SET nome = 'Pedro Judas',
     email = 'pedrooliveira@gmail.com'
 WHERE id = 3;
 
