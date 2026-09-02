@@ -2,7 +2,6 @@ DROP DATABASE IF EXISTS clientes;
 CREATE DATABASE clientes;
 USE clientes;
 
--- Criação da tabela clientes
 CREATE TABLE clientes (
     idcliente INT PRIMARY KEY,
     nome VARCHAR(100),
@@ -10,7 +9,6 @@ CREATE TABLE clientes (
     cpf BIGINT
 );
 
--- Alteração para adicionar a coluna telefone
 ALTER TABLE clientes
 ADD telefone VARCHAR(20);
 
@@ -21,7 +19,6 @@ INSERT INTO clientes VALUES
 
 SELECT * FROM clientes;
 
--- Criação da tabela pedidos
 CREATE TABLE pedidos (
     idpedidos INT PRIMARY KEY,
     idcliente INT,
@@ -30,7 +27,6 @@ CREATE TABLE pedidos (
     FOREIGN KEY (idcliente) REFERENCES clientes(idcliente)
 );
 
--- Inserção de dados em pedidos
 INSERT INTO pedidos VALUES
 (1, 1, '2026-09-02', 50.00),
 (2, 2, '2026-09-02', 80.50);
