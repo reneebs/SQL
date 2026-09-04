@@ -1,7 +1,6 @@
-CREATE DATABASE db_livraria;
+CREATE DATABASE IF NOT EXISTS db_livraria;
 USE db_livraria;
 
--- QUESTÃO 1
 CREATE TABLE autor (
     id_autor INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
@@ -9,15 +8,14 @@ CREATE TABLE autor (
     data_nascimento DATE
 );
 
--- QUESTÃO 2
 CREATE TABLE editora (
     id_editora INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     endereco VARCHAR(200),
-    telefone VARCHAR(20)
+    telefone VARCHAR(30),
+    email VARCHAR(100)
 );
 
--- QUESTÃO 3
 CREATE TABLE livro (
     id_livro INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(200) NOT NULL,
@@ -28,50 +26,26 @@ CREATE TABLE livro (
     FOREIGN KEY (id_autor_principal) REFERENCES autor(id_autor)
 );
 
--- QUESTÃO 4
-ALTER TABLE editora
-MODIFY telefone VARCHAR(30);
-
-ALTER TABLE editora
-ADD email VARCHAR(100);
-
--- QUESTÃO 5
--- DROP TABLE livro;
-
--- QUESTÃO 6
 INSERT INTO autor (nome, nacionalidade, data_nascimento)
 VALUES
 ('Machado de Assis', 'Brasil', '1839-06-21'),
 ('Jorge Amado', 'Brasil', '1912-08-10'),
-('J. K. Rowling', 'Inglaterra', '1965-07-31');
+('C. K. Rolling', 'Inglaterra', '1965-07-31');
 
 INSERT INTO editora (nome, endereco, telefone, email)
 VALUES
-('Editora Alfa', 'Rua A, 100', '71999999999', 'alfa@email.com'),
-('Editora Beta', 'Rua B, 200', '71888888888', 'beta@email.com');
+('Editora alfa', 'Rua A, 100', '71999999999', 'alfa@email.com'),
+('Editora beta', 'Rua B, 200', '71888888888', 'beta@email.com');
 
--- QUESTÃO 7
 INSERT INTO livro (titulo, ano_publicacao, id_editora, id_autor_principal)
 VALUES
 ('Dom Casmurro', 1899, 1, 1),
 ('Capitães da Areia', 1937, 2, 2);
 
--- QUESTÃO 8
-UPDATE autor
-SET nacionalidade = 'Brasil'
-WHERE id_autor = 1;
-
 UPDATE editora
-SET telefone = '71777777777'
+SET telefone = '7167676767'
 WHERE id_editora = 1;
 
--- QUESTÃO 9
-DELETE FROM livro
-WHERE id_editora = 2;
-
--- Cuidado: DELETE ou UPDATE sem WHERE pode alterar ou apagar todos os registros.
-
--- QUESTÃO 10
 SELECT * FROM autor;
 
 SELECT titulo, ano_publicacao
