@@ -1,0 +1,26 @@
+create table cliente (
+	idcliente int primary key auto_increment,
+    nome varchar(100),
+    email varchar(100),
+    cpf BIGINT
+);
+create table pediddo (
+	idpedido int primary key auto_increment,
+    idcliente int,
+    data_pedido date,
+    valor decimal(10,2),
+    foreign key (idcliente) references cliente(idcliente)
+);
+create table anotacao_pedido (
+	idanotacao int primary key auto_increment,
+    idpedido int,
+    data_anotacao date,
+    texto varchar(100),
+    foreign key(idpedido) references pedido(idpedido)
+);
+
+select cliente.nome,pedido,data_pedido
+from cliente
+inner join pedido on cliente.idcliente = pedido.idcliente;
+
+insert into cliente
