@@ -1,26 +1,38 @@
-create table cliente (
-	idcliente int primary key auto_increment,
-    nome varchar(100),
-    email varchar(100),
-    cpf BIGINT
-);
-create table pediddo (
-	idpedido int primary key auto_increment,
-    idcliente int,
-    data_pedido date,
-    valor decimal(10,2),
-    foreign key (idcliente) references cliente(idcliente)
-);
-create table anotacao_pedido (
-	idanotacao int primary key auto_increment,
-    idpedido int,
-    data_anotacao date,
-    texto varchar(100),
-    foreign key(idpedido) references pedido(idpedido)
+CREATE TABLE CLIENTE (
+    IDCLIENTE INT PRIMARY KEY AUTO_INCREMENT,
+    NOME VARCHAR(100),
+    EMAIL VARCHAR(100),
+    CPF BIGINT
 );
 
-select cliente.nome,pedido,data_pedido
-from cliente
-inner join pedido on cliente.idcliente = pedido.idcliente;
+CREATE TABLE PEDIDO (
+    IDPEDIDO INT PRIMARY KEY AUTO_INCREMENT,
+    IDCLIENTE INT,
+    DATA_PEDIDO DATE,
+    VALOR DECIMAL(10,2),
+    FOREIGN KEY (IDCLIENTE) REFERENCES CLIENTE(IDCLIENTE)
+);
 
-insert into cliente
+CREATE TABLE ANOTACAO_PEDIDO (
+    IDANOTACAO INT PRIMARY KEY AUTO_INCREMENT,
+    IDPEDIDO INT,
+    DATA_ANOTACAO DATE,
+    TEXTO VARCHAR(100),
+    FOREIGN KEY (IDPEDIDO) REFERENCES PEDIDO(IDPEDIDO)
+);
+
+INSERT INTO CLIENTE (NOME, EMAIL, CPF) VALUES
+('JOAO SILVA', 'joao@gmail.com', 12345678901),
+('MARIA SANTOS', 'maria@gmail.com', 23456789012),
+('PEDRO OLIVEIRA', 'pedro@gmail.com', 34567890123),
+('ANA COSTA', 'ana@gmail.com', 45678901234);
+
+INSERT INTO PEDIDO (IDCLIENTE, DATA_PEDIDO, VALOR) VALUES
+(1, '2026-09-01', 150.00),
+(2, '2026-09-02', 230.50),
+(3, '2026-09-03', 99.90),
+(1, '2026-09-04', 350.00);
+
+SELECT CLIENTE.NOME, PEDIDO.IDPEDIDO, PEDIDO.DATA_PEDIDO
+FROM CLIENTE
+INNER JOIN PEDIDO ON CLIENTE.IDCLIENTE = PEDIDO.IDCLIENTE;
