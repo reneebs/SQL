@@ -1,15 +1,19 @@
 CREATE DATABASE IF NOT EXISTS db_livraria;
 USE db_livraria;
 
+DROP TABLE IF EXISTS livro;
+DROP TABLE IF EXISTS editora;
+DROP TABLE IF EXISTS autor;
+
 CREATE TABLE autor (
-    id_autor INT PRIMARY KEY AUTO_INCREMENT,
+    id_autor INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     nacionalidade VARCHAR(50),
     data_nascimento DATE
 );
 
 CREATE TABLE editora (
-    id_editora INT PRIMARY KEY AUTO_INCREMENT,
+    id_editora INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     endereco VARCHAR(200),
     telefone VARCHAR(30),
@@ -17,28 +21,25 @@ CREATE TABLE editora (
 );
 
 CREATE TABLE livro (
-    id_livro INT PRIMARY KEY AUTO_INCREMENT,
+    id_livro INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(200) NOT NULL,
-    ano_publicacao YEAR,
+    ano_publicacao INT,
     id_editora INT,
     id_autor_principal INT,
     FOREIGN KEY (id_editora) REFERENCES editora(id_editora),
     FOREIGN KEY (id_autor_principal) REFERENCES autor(id_autor)
 );
 
-INSERT INTO autor (nome, nacionalidade, data_nascimento)
-VALUES
+INSERT INTO autor (nome, nacionalidade, data_nascimento) VALUES
 ('Machado de Assis', 'Brasil', '1839-06-21'),
 ('Jorge Amado', 'Brasil', '1912-08-10'),
 ('C. K. Rolling', 'Inglaterra', '1965-07-31');
 
-INSERT INTO editora (nome, endereco, telefone, email)
-VALUES
-('Editora alfa', 'Rua A, 100', '71999999999', 'alfa@email.com'),
-('Editora beta', 'Rua B, 200', '71888888888', 'beta@email.com');
+INSERT INTO editora (nome, endereco, telefone, email) VALUES
+('Editora Alfa', 'Rua A, 100', '71999999999', 'alfa@email.com'),
+('Editora Beta', 'Rua B, 200', '71888888888', 'beta@email.com');
 
-INSERT INTO livro (titulo, ano_publicacao, id_editora, id_autor_principal)
-VALUES
+INSERT INTO livro (titulo, ano_publicacao, id_editora, id_autor_principal) VALUES
 ('Dom Casmurro', 1899, 1, 1),
 ('Capitães da Areia', 1937, 2, 2);
 
