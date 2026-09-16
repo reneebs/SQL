@@ -17,3 +17,13 @@ SELECT nome FROM brinquedos;
 SELECT categoria FROM brinquedos;
 SELECT preco FROM brinquedos;
 SELECT quantidade_estoque FROM brinquedos;
+
+SELECT COUNT(*) AS total_modelos FROM brinquedos;
+
+SELECT SUM(preco) AS soma_precos FROM brinquedos;
+
+SELECT AVG(preco) AS preco_medio FROM brinquedos;
+
+SELECT MAX(preco) AS mais_caro FROM brinquedos;
+
+SELECT MIN(preco) AS mais_barato FROM brinquedos;
