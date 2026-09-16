@@ -1,0 +1,19 @@
+CREATE TABLE brinquedos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
+    preco DECIMAL(10,2) CHECK (preco > 0),
+    quantidade_estoque INT DEFAULT 0
+);
+
+INSERT INTO brinquedos (nome, categoria, preco, quantidade_estoque) VALUES
+('Carrinho de Controle', 'Veiculos', 670.00, 99),
+('Boneca Da Barbie', 'Bonecos', 42.00, 1224),
+('Quebra Cabeça 1000 Peças', 'Jogos', 69.00, 6),
+('Jogo de Tabuleiro', 'Jogos',666.00, 9),
+('Urso de Pelúcia', 'Pelucia', 777.00, 333);
+
+SELECT nome FROM brinquedos;
+SELECT categoria FROM brinquedos;
+SELECT preco FROM brinquedos;
+SELECT quantidade_estoque FROM brinquedos;
