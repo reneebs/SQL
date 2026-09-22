@@ -1,0 +1,18 @@
+CREATE TABLE estado (
+    idestado INT PRIMARY KEY,
+    nome VARCHAR(50)
+);
+
+CREATE TABLE cidade (
+    idcidade INT PRIMARY KEY,
+    nome VARCHAR(50),
+    idestado INT
+);
+
+INSERT INTO estado VALUES
+(1, 'Bahia'),
+(2, 'Sao Paulo');
+
+INSERT INTO cidade VALUES
+(1, 'Salvador', 1),
+(2, 'Campinas', 2);
