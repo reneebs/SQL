@@ -1,12 +1,16 @@
 CREATE TABLE estado (
-    idestado INT PRIMARY KEY,
+    id_Estado INT PRIMARY KEY,
     nome VARCHAR(50)
 );
 
 CREATE TABLE cidade (
-    idcidade INT PRIMARY KEY,
-    nome VARCHAR(50),
-    idestado INT
+    id_Cidade INT PRIMARY KEY,
+    nome VARCHAR(50)
+);
+
+CREATE TABLE endereco (
+    id_Endereco INT PRIMARY KEY,    
+    bairro VARCHAR(50)
 );
 
 INSERT INTO estado VALUES
@@ -14,5 +18,14 @@ INSERT INTO estado VALUES
 (2, 'Sao Paulo');
 
 INSERT INTO cidade VALUES
-(1, 'Salvador', 1),
-(2, 'Campinas', 2);
+(1, 'Salvador'),
+(2, 'Campinas');
+
+INSERT INTO endereco VALUES
+(1, 'Rua 2 De Julho'),
+(2, 'Rua Gleba C'),
+(3, 'Rua Gleba E');
+
+select * from estado;
+select * from cidade;
+select * from endereco;
