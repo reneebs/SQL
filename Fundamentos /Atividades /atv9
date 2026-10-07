@@ -1,45 +1,49 @@
-CREATE TABLE livros (
-    id_livro INT PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR(100) NOT NULL,
-    autor VARCHAR(100) NOT NULL
+create database if not exists biblioteca;
+use biblioteca;
+
+create table if not exists livros (
+id_livro int primary key auto_increment,
+titulo varchar(100) not null,
+autor varchar(100) not null
 );
 
-CREATE TABLE leitores (
-    id_leitor INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL
+create table if not exists leitores (
+id_leitor int primary key auto_increment,
+nome varchar(100) not null,
+email varchar(100) unique not null
 );
 
-CREATE TABLE emprestimos (
-    id_emprestimo INT PRIMARY KEY AUTO_INCREMENT,
-    id_livro INT,
-    id_leitor INT,
-    data_emprestimo DATE NOT NULL,
-    data_prevista DATE NOT NULL,
-    data_devolucao DATE,
-    FOREIGN KEY (id_livro) REFERENCES livros(id_livro),
-    FOREIGN KEY (id_leitor) REFERENCES leitores(id_leitor)
+
+create table if not exists emprestimos (
+id_emprestimos int primary key auto_increment,
+id_livro int, foreign key (id_livro) references livros(id_livro),
+id_leitor int, foreign key (id_leitor) references leitores(id_leitor),
+data_emprestimo int,
+data_prevista date not null,
+data_devolucao date
 );
 
-INSERT INTO livros (titulo, autor) VALUES
-('Livro 1', 'Autor 1'),
-('Livro 2', 'Autor 2'),
-('Livro 3', 'Autor 3');
 
-INSERT INTO leitores (nome, email) VALUES
-('Joao', 'joao@email.com'),
-('Maria', 'maria@email.com'),
-('Pedro', 'pedro@email.com');
+
+insert into livros (titulo, autor) values 
+("harry porta", "René 1"),
+("Diablo 5", "Rodrigo 2"),
+("Surf", "Taylo 3");
+
+insert into leitores(nome, email) values 
+("westn", "westnprofessor@gmail.com"),
+("lula", "lulaladrao@gmail.com"),
+("flavio", "flaviopresidente@gmail.com");
 
 INSERT INTO emprestimos
 (id_livro, id_leitor, data_emprestimo, data_prevista, data_devolucao)
 VALUES
-(?, ?, '2026-09-01', '2026-09-10', '2026-09-09');
+(?, ?, '2026.09.01', '2026.09.10', '2026-09-09');
 
 INSERT INTO emprestimos
 (id_livro, id_leitor, data_emprestimo, data_prevista, data_devolucao)
 VALUES
-(?, ?, '2026-09-01', '2026-09-10', NULL);
+(?, ?, '2026.09.01', '2026.09.10', NULL);
 
 SELECT l.nome, li.titulo, e.data_emprestimo
 FROM emprestimos e
