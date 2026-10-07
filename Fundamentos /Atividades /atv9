@@ -1,0 +1,62 @@
+CREATE TABLE livros (
+    id_livro INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(100) NOT NULL,
+    autor VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE leitores (
+    id_leitor INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE emprestimos (
+    id_emprestimo INT PRIMARY KEY AUTO_INCREMENT,
+    id_livro INT,
+    id_leitor INT,
+    data_emprestimo DATE NOT NULL,
+    data_prevista DATE NOT NULL,
+    data_devolucao DATE,
+    FOREIGN KEY (id_livro) REFERENCES livros(id_livro),
+    FOREIGN KEY (id_leitor) REFERENCES leitores(id_leitor)
+);
+
+INSERT INTO livros (titulo, autor) VALUES
+('Livro 1', 'Autor 1'),
+('Livro 2', 'Autor 2'),
+('Livro 3', 'Autor 3');
+
+INSERT INTO leitores (nome, email) VALUES
+('Joao', 'joao@email.com'),
+('Maria', 'maria@email.com'),
+('Pedro', 'pedro@email.com');
+
+-- aqui coloque 2 emprestimos:
+-- 1 devolvido
+-- 1 atrasado e ainda aberto
+
+INSERT INTO emprestimos
+(id_livro, id_leitor, data_emprestimo, data_prevista, data_devolucao)
+VALUES
+(?, ?, '2026-09-01', '2026-09-10', '2026-09-09');
+
+INSERT INTO emprestimos
+(id_livro, id_leitor, data_emprestimo, data_prevista, data_devolucao)
+VALUES
+(?, ?, '2026-09-01', '2026-09-10', NULL);
+
+SELECT l.nome, li.titulo, e.data_emprestimo
+FROM emprestimos e
+INNER JOIN leitores l ON e.id_leitor = l.id_leitor
+INNER JOIN livros li ON e.id_livro = li.id_livro;
+
+SELECT l.nome, li.titulo
+FROM leitores l
+LEFT JOIN emprestimos e ON l.id_leitor = e.id_leitor
+LEFT JOIN livros li ON e.id_livro = li.id_livro;
+
+SELECT l.nome, li.titulo, e.data_prevista
+FROM emprestimos e
+INNER JOIN leitores l ON e.id_leitor = l.id_leitor
+INNER JOIN livros li ON e.id_livro = li.id_livro
+WHERE e.data_devolucao IS NULL;
