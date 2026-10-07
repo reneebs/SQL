@@ -31,10 +31,6 @@ INSERT INTO leitores (nome, email) VALUES
 ('Maria', 'maria@email.com'),
 ('Pedro', 'pedro@email.com');
 
--- aqui coloque 2 emprestimos:
--- 1 devolvido
--- 1 atrasado e ainda aberto
-
 INSERT INTO emprestimos
 (id_livro, id_leitor, data_emprestimo, data_prevista, data_devolucao)
 VALUES
